@@ -50,5 +50,5 @@ Open a terminal (a.k.a. a command prompt) in the project root directory. Run the
 # make sure you run sbt in the root directory of the project (where the file build.sbt is).
 # get your submit token from the main assignment screen in coursera
 # its at the very bottom of the screen
-sbt "submit julien.richard-foy@epfl.ch IcGlzUh76GJ94Mlu"
+sbt "submit my@email.com mytokenhere"
 ```
