@@ -1,10 +1,13 @@
 import scala.collection.mutable
 
-val list = List(1,2,3)
+enum Planet(mass: Double, radius: Double):
+    private final val G = 6.67300E-11
+    def surfaceGravity = G * mass / (radius * radius)
+    def surfaceWeight(otherMass: Double) =
+        otherMass * surfaceGravity
 
-for (x <- 1 to 10) do println(x * x)
+    case Mercury extends Planet(3.303e+23, 2.4397e6)
+    case Earth   extends Planet(5.976e+24, 6.37814e6)
+end Planet
 
-val data = mutable.HashMap.empty[String, Int]
-
-data += ("a" -> 0)
-data += ("b" -> 1)
+println(Planet.Mercury.surfaceWeight(1))
