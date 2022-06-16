@@ -1,3 +1,7 @@
+import sbt.io.ExtensionFilter
+
+// ThisBuild === apply to all projects, rather than a single project
+// convenient way to define cross-project settings
 ThisBuild / version := "0.1.0-SNAPSHOT"
 
 ThisBuild / scalaVersion := "3.1.3"
@@ -10,6 +14,12 @@ ThisBuild / libraryDependencies ++= List(
 
 ThisBuild / testFrameworks += TestFramework("munit.Framework")
 
+unmanagedSources / includeFilter := new ExtensionFilter(
+  "java",
+  "scala",
+  "sc"
+)
+
 // configure sb-site: enables sbt task makeSite
 // run sbt > makeSite
 // check in root/target/site/*
@@ -18,6 +28,8 @@ makeSite / mappings := {
   IO.write(indexFile, "<h1>poop</h1>")
   Seq(indexFile -> "index.html")
 }
+
+
 
 lazy val root = (project in file("."))
   .settings(
