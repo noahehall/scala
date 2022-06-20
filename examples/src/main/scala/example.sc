@@ -1,13 +1,16 @@
 import scala.collection.mutable
 
-def postCondition(throwIt: Boolean): String = {
-    if throwIt == false then "wont throw" else ""
-} ensuring (_.length != 0, "fails if ensuring returns false")
+trait AB[T]:
+  def unapply(s: T): Option[T] = Option(s)
 
+case class A(s: String) extends AB[String]
+case class B(s: String) extends AB[String]
 
-val poop = List(List(1, 2), List(true, false))
-println(poop)
+object AB:
+  def test[T](args: List[AB[T]]) = args match
+  case A(a) :: B(b) :: _ => (A(a), B(b))
+  case _ => (args(0), args(1))
 
-def stringify[A](thing: A): String = thing.toString
-stringify[Int](1)
-stringify[Boolean](true)
+val (first, second) = AB.test(List(A("ima a"), B("ima b")))
+//val first: AB[String] = A(ima a)
+//val second: AB[String] = B(ima b)
