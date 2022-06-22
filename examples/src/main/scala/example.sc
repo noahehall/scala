@@ -1,5 +1,21 @@
 import scala.collection.mutable
 
-val p: Range = 1 to 4 by 2
+enum JSON:
+  case Seq (elems: List[JSON])
+  case Obj (bindings: Map[String, JSON])
+  case Num (num: Double)
+  case Str (str: String)
+  case Bool (b: Boolean)
+  case Null
 
-println(p.)
+val jsData = JSON.Obj(Map(
+  "name" -> JSON.Str("noah"),
+  "mobile" -> JSON.Obj(Map(
+    "area" -> JSON.Num(415),
+    "number" -> JSON.Num(4154155)
+  )),
+  "skills" -> JSON.Seq(List(
+    JSON.Str("app dev"),
+    JSON.Str("growth hacking")
+  ))
+))
