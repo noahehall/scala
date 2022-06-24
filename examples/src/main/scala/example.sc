@@ -1,7 +1,6 @@
 import scala.collection.mutable
 
-def poop: Int =
-  lazy val x = 3
-  x + x + x
 
-poop
+val x: List[Int] = List(1,2,3)
+
+for (y <- x.withFilter(z => z > 2)) yield println(y)
