@@ -11,7 +11,7 @@ def zip[B](list: List[B]): List[(A,B)] = {
     case (List.Cons(xh, xt), List.Cons(yh, yt)) =>
       List.Cons((xh, yh), go(xt, yt))
   }
-  
+
 
   def map[B](f: (A) => B): List[B] = {
     def go(xs: List[A], acc: List[B]): List[B] = {
